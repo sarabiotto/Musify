@@ -15,14 +15,40 @@ class NodoLista:
         self.musica = musica
         self.proximo = None
     
-m1 = Musica(1, "Faroeste Caboclo", "Legião Urbana", "Rock", 128)
-m2 = Musica(2, "Se", "Djavan", "MPB", 76)
+class Biblioteca:
+    def __init__(self):
+        self.cabeca = None
+        self.tamanho = 0
+        self._proximo_id = 1
 
-n1 = NodoLista(m1)
-n2 = NodoLista(m2)
+    def inserir(self, titulo, artista, genero, bpm):
+        musica = Musica(self._proximo_id, titulo, artista, genero, bpm)
+        self._proximo_id += 1
+        novo_nodo = NodoLista(musica)
 
-n1.proximo = n2  
+        if self.cabeca is None:
+            self.cabeca = novo_nodo
+        else:
+            atual = self.cabeca
+            while atual.proximo is not None:
+                atual = atual.proximo
+            atual.proximo = novo_nodo
 
-print(n1.musica)        
-print(n1.proximo.musica)
+        self.tamanho += 1
+        print(f"Música '{titulo}' adicionada com ID {musica.id}.")
+
+    def listar(self):
+        if self.cabeca is None:
+            print("Biblioteca vazia.")
+            return
+        atual = self.cabeca
+        while atual is not None:
+            print(atual.musica)
+            atual = atual.proximo
+
+bib = Biblioteca()
+bib.inserir("Faroeste Caboclo", "Legião Urbana", "Rock", 128)
+bib.inserir("Cachimbo da Paz", "Gabriel o Pensador", "Hip Hop", 92)
+bib.inserir("Game of Thrones", "Ramin Djawadi", "Trilha Sonora", 172)
+bib.listar()
 
