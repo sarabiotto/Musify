@@ -46,6 +46,32 @@ class Biblioteca:
             print(atual.musica)
             atual = atual.proximo
 
+  def buscar(self, valor):
+        atual = self.cabeca
+        while atual is not None:
+            if atual.musica.id == valor or atual.musica.titulo == valor:
+                return atual.musica
+            atual = atual.proximo
+        return None
+
+    def remover(self, id):
+        anterior = None
+        atual = self.cabeca
+
+        while atual is not None:
+            if atual.musica.id == id:
+                if anterior is None:
+                    self.cabeca = atual.proximo
+                else:
+                    anterior.proximo = atual.proximo
+                self.tamanho -= 1
+                print(f"Música ID {id} removida.")
+                return
+            anterior = atual
+            atual = atual.proximo
+
+        print(f"ID {id} não encontrado.")
+
 bib = Biblioteca()
 bib.inserir("Faroeste Caboclo", "Legião Urbana", "Rock", 128)
 bib.inserir("Cachimbo da Paz", "Gabriel o Pensador", "Hip Hop", 92)
