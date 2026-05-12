@@ -46,7 +46,7 @@ class Biblioteca:
             print(atual.musica)
             atual = atual.proximo
 
-  def buscar(self, valor):
+    def buscar(self, valor):
         atual = self.cabeca
         while atual is not None:
             if atual.musica.id == valor or atual.musica.titulo == valor:
@@ -76,5 +76,10 @@ bib = Biblioteca()
 bib.inserir("Faroeste Caboclo", "Legião Urbana", "Rock", 128)
 bib.inserir("Cachimbo da Paz", "Gabriel o Pensador", "Hip Hop", 92)
 bib.inserir("Game of Thrones", "Ramin Djawadi", "Trilha Sonora", 172)
+
+musica = bib.buscar(2)
+print("Encontrada:", musica)
+
+bib.remover(2)
 bib.listar()
 
