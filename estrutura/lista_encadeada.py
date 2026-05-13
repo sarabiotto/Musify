@@ -1,4 +1,4 @@
-from models.musica import Musica
+from modelo.musica import Musica
 
 
 class NodoLista:
