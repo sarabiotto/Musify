@@ -196,6 +196,23 @@ def main():
                     print("Reproduzindo:", musica)
                     historico.enqueue(musica)
 
+        elif opcao == "7":
+            print("Filas: relaxar, focar, animar, treinar")
+            nome = input("Escolha a fila: ").lower()
+            if nome not in filas:
+                print("Fila inválida.")
+            else:
+                filas[nome].exibir()
+
+        elif opcao == "8":
+            historico.exibir()
+
+        elif opcao == "9":
+            print(f"\nTotal na biblioteca: {biblioteca.tamanho}")
+            for nome, fila in filas.items():
+                print(f"Fila {fila.nome}: {fila.tamanho} músicas")
+            print(f"Total reproduzidas: {historico.tamanho}")
+
         elif opcao == "10":
             print("Saindo...")
             break
