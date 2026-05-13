@@ -185,6 +185,17 @@ def main():
                 atual = atual.proximo
             print("Filas montadas com sucesso!")
 
+        elif opcao == "6":
+            print("Filas: relaxar, focar, animar, treinar")
+            nome = input("Escolha a fila: ").lower()
+            if nome not in filas:
+                print("Fila inválida.")
+            else:
+                musica = filas[nome].dequeue()
+                if musica:
+                    print("Reproduzindo:", musica)
+                    historico.enqueue(musica)
+
         elif opcao == "10":
             print("Saindo...")
             break
