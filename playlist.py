@@ -114,7 +114,64 @@ class Fila:
             print(atual.musica)
             atual = atual.proximo
 
+def main():
+    biblioteca = Biblioteca()
+    filas = {
+        "relaxar": Fila("Relaxar"),
+        "focar":   Fila("Focar"),
+        "animar":  Fila("Animar"),
+        "treinar": Fila("Treinar")
+    }
+    historico = Fila("Histórico")
 
+    while True:
+        print("\n===== MUSIFY =====")
+        print("1. Adicionar música")
+        print("2. Remover música")
+        print("3. Buscar música")
+        print("4. Listar biblioteca")
+        print("5. Montar filas por humor")
+        print("6. Reproduzir próxima")
+        print("7. Exibir fila de humor")
+        print("8. Exibir histórico")
+        print("9. Estatísticas")
+        print("10. Sair")
+
+        opcao = input("\nEscolha uma opção: ")
+
+        if opcao == "1":
+            titulo = input("Título: ")
+            artista = input("Artista: ")
+            genero = input("Gênero: ")
+            bpm = input("BPM: ")
+            if not bpm.isnumeric() or int(bpm) <= 0:
+                print("BPM inválido!")
+            else:
+                biblioteca.inserir(titulo, artista, genero, int(bpm))
+
+        elif opcao == "2":
+            id = int(input("ID da música: "))
+            biblioteca.remover(id)
+
+        elif opcao == "3":
+            valor = input("Digite o ID ou título: ")
+            if valor.isnumeric():
+                valor = int(valor)
+            musica = biblioteca.buscar(valor)
+            if musica:
+                print(musica)
+            else:
+                print("Música não encontrada.")
+
+        elif opcao == "4":
+            biblioteca.listar()
+
+        elif opcao == "10":
+            print("Saindo...")
+            break
+
+if __name__ == "__main__":
+    main()
 
 
 
