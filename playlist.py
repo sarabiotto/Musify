@@ -166,6 +166,25 @@ def main():
         elif opcao == "4":
             biblioteca.listar()
 
+        elif opcao == "5":
+            for nome in filas:
+                filas[nome].inicio = None
+                filas[nome].fim = None
+                filas[nome].tamanho = 0
+            atual = biblioteca.cabeca
+            while atual is not None:
+                bpm = atual.musica.bpm
+                if bpm <= 80:
+                    filas["relaxar"].enqueue(atual.musica)
+                elif bpm <= 120:
+                    filas["focar"].enqueue(atual.musica)
+                elif bpm <= 160:
+                    filas["animar"].enqueue(atual.musica)
+                else:
+                    filas["treinar"].enqueue(atual.musica)
+                atual = atual.proximo
+            print("Filas montadas com sucesso!")
+
         elif opcao == "10":
             print("Saindo...")
             break
