@@ -71,15 +71,50 @@ class Biblioteca:
             atual = atual.proximo
 
         print(f"ID {id} não encontrado.")
+class NodoFila:
+    def __init__(self, musica):
+        self.musica = musica
+        self.proximo = None
 
-bib = Biblioteca()
-bib.inserir("Faroeste Caboclo", "Legião Urbana", "Rock", 128)
-bib.inserir("Cachimbo da Paz", "Gabriel o Pensador", "Hip Hop", 92)
-bib.inserir("Game of Thrones", "Ramin Djawadi", "Trilha Sonora", 172)
 
-musica = bib.buscar(2)
-print("Encontrada:", musica)
+class Fila:
+    def __init__(self, nome):
+        self.nome = nome
+        self.inicio = None
+        self.fim = None
+        self.tamanho = 0
 
-bib.remover(2)
-bib.listar()
+    def enqueue(self, musica):
+        novo_nodo = NodoFila(musica)
+        if self.fim is None:
+            self.inicio = novo_nodo
+            self.fim = novo_nodo
+        else:
+            self.fim.proximo = novo_nodo
+            self.fim = novo_nodo
+        self.tamanho += 1
+
+    def dequeue(self):
+        if self.inicio is None:
+            print(f"Fila '{self.nome}' está vazia.")
+            return None
+        musica = self.inicio.musica
+        self.inicio = self.inicio.proximo
+        if self.inicio is None:
+            self.fim = None
+        self.tamanho -= 1
+        return musica
+
+    def exibir(self):
+        if self.inicio is None:
+            print(f"Fila '{self.nome}' está vazia.")
+            return
+        atual = self.inicio
+        while atual is not None:
+            print(atual.musica)
+            atual = atual.proximo
+
+
+
+
 
